@@ -1,8 +1,10 @@
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { ProductTile } from './ProductTile';
+import { css } from '@emotion/css';
 
 export const ProductGrid = () => {
   const [products, setProducts] = useState([]);
+  const itemsPerRow = 2;
 
   useEffect(() => {
     // fetch returns a promise
@@ -17,22 +19,23 @@ export const ProductGrid = () => {
       });
   }, []);
 
+  const gridCssClass = css`
+    display: grid;
+    row-gap: 32px;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(${itemsPerRow}, 1fr);
+    }
+  `;
+
   return (
-    <ul>
+    <ul className={gridCssClass}>
       {products.map((product) => {
-        const { price, title, image, id } = product;
+        const { id } = product;
 
         return (
           <li key={id}>
-            <h1>{title}</h1>
-            <p>{price}</p>
-            <Image
-              src={image}
-              width={200}
-              height={200}
-              objectFit="contain"
-              alt={title}
-            ></Image>
+            <ProductTile product={product}></ProductTile>
           </li>
         );
       })}
