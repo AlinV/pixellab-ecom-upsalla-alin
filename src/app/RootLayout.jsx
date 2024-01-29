@@ -14,8 +14,8 @@ export default function RootLayout({ children }) {
           <div className="main-area">
             <main className="content">{children}</main>
 
-            <footer className="footer">
-              <Footer />
+            <footer className="footer ">
+              <Footer></Footer>
             </footer>
           </div>
         </div>

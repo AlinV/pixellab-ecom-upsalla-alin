@@ -1,23 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useProducts } from '@/hooks';
 import { ProductTile } from './ProductTile';
 import { css } from '@emotion/css';
 
 export const ProductGrid = () => {
-  const [products, setProducts] = useState([]);
+  const { products, loading } = useProducts();
   const itemsPerRow = 2;
-
-  useEffect(() => {
-    // fetch returns a promise
-    fetch('https://fakestoreapi.com/products')
-      .then((response) => {
-        // response.json() returns a promise
-        return response.json();
-      })
-      .then((products) => {
-        console.log(products);
-        setProducts(products);
-      });
-  }, []);
 
   const gridCssClass = css`
     display: grid;
@@ -27,6 +14,10 @@ export const ProductGrid = () => {
       grid-template-columns: repeat(${itemsPerRow}, 1fr);
     }
   `;
+
+  // if (loading) {
+  //   return <div className="container mx-auto px-4">...loading</div>;
+  // }
 
   return (
     <ul className={gridCssClass}>

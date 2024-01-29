@@ -1,3 +1,4 @@
+import { StarRating } from '@/components/ui/server';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -19,6 +20,7 @@ export const ProductTile = (props) => {
             className="inline"
           ></Image>
         </Link>
+
         <h1>
           <Link href={productUrl} title={title}>
             {title}
@@ -26,9 +28,12 @@ export const ProductTile = (props) => {
         </h1>
       </header>
 
-      <section>{/* product price */}</section>
+      <section>{price}</section>
 
-      <footer>{/* add to cart homework */}</footer>
+      <footer>
+        {/* add to cart homework */}
+        <StarRating></StarRating>
+      </footer>
     </article>
   );
 };
