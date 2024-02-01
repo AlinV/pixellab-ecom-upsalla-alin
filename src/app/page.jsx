@@ -2,10 +2,10 @@ import { ProductGrid } from '@/components/catalog/client';
 
 export default function Home() {
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 h-full">
       <header></header>
 
-      <section>
+      <section className="h-full">
         <ProductGrid></ProductGrid>
       </section>
 

@@ -21,8 +21,8 @@ export default function RootLayout({ children }) {
             <Header></Header>
           </header>
 
-          <div className="main-area">
-            <main className="content">{children}</main>
+          <div className="main-area h-full">
+            <main className="content h-full min-h-80 mb-24">{children}</main>
 
             <footer className="footer">
               <Footer></Footer>
