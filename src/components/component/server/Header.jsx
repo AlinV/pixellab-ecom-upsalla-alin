@@ -8,7 +8,7 @@ import { FaSquareXTwitter } from 'react-icons/fa6';
 
 export const Header = () => {
   return (
-    <div className="bg-neutral-900 text-white flex lg:flex-col justify-between items-center h-full p-4 mx-auto container relative z-10">
+    <div className="bg-neutral-900 text-white flex lg:flex-col justify-between items-center h-full p-4 mx-auto container relative z-20">
       {/* forced example */}
       <Link
         href="/"

@@ -1,16 +1,18 @@
 import { useProducts } from '@/hooks';
 import { ProductTile } from './ProductTile';
 import { css } from '@emotion/css';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
 import { BiLoader } from 'react-icons/bi';
+import { uiContext } from '@/contexts';
 
 export const ProductGrid = () => {
+  const { itemsPerRow } = useContext(uiContext);
   const { products, loading, error } = useProducts();
   const [paginatedProducts, setPaginatedProducts] = useState([]);
   const [perPage, setPerPage] = useState(8);
   const [page, setPage] = useState(1);
-  const itemsPerRow = 2;
   const topRef = useRef(null);
+  const errorMessage = <img src="/images/404.gif" width={600} height={600} />;
 
   useEffect(() => {
     const newPaginatedProducts = products
@@ -29,12 +31,8 @@ export const ProductGrid = () => {
     row-gap: 32px;
     margin: 64px 0;
 
-    @media (min-width: 791px) {
+    @media (min-width: 1024px) {
       grid-template-columns: repeat(${itemsPerRow}, 1fr);
-    }
-
-    @media (min-width: 1280px) {
-      grid-template-columns: repeat(${itemsPerRow * 2}, 1fr);
     }
   `;
 
@@ -55,7 +53,7 @@ export const ProductGrid = () => {
     return (
       <div className="container mx-auto px-4 flex flex-col justify-center items-center gap-6 py-20">
         <h1 className="text-6xl">404</h1>
-        {error}
+        {errorMessage}
         <p className="text-xl">Come on, give it a slap, it might work again!</p>
       </div>
     );

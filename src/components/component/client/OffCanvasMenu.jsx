@@ -29,9 +29,9 @@ export const OffCanvasMenu = () => {
           open
             ? 'translate-y-full translate-x-0 lg:translate-x-full lg:translate-y-0'
             : ''
-        } bg-neutral-900 transform-gpu transition-transform duration-500 text-white w-dvw h-dvh fixed left-0 -top-full lg:top-0 lg:-left-1/3 z-0 lg:w-1/3 lg:pl-36`}
+        } bg-neutral-900 transform-gpu transition-transform duration-500 text-white w-dvw h-dvh fixed left-0 -top-full lg:top-0 lg:-left-1/3 lg:w-1/3 lg:pl-36`}
       >
-        <ul className="flex flex-col gap-4 justify-center lg:items-start items-center text-2xl leading-10 font-medium h-full uppercase">
+        <ul className="flex flex-col gap-4 justify-center lg:items-start items-center text-2xl leading-10 font-medium h-full uppercase relative z-10">
           <li className="lg:hover:text-[var(--accent1)]">
             <Link href="/" title="Home">
               Home
