@@ -20,6 +20,8 @@ export const BackToTop = () => {
 
   return (
     <button
+      title="Back to top"
+      type="button"
       onClick={scrollToTop}
       className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-5xl bg-[var(--gray)] text-[var(--accent3)] px-2 lg:hover:text-[var(--accent1)]"
     >

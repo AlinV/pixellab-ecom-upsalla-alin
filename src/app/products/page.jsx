@@ -5,7 +5,7 @@ import {
   ProductGrid,
 } from '@/components/catalog/client';
 
-export default function Home() {
+export default function productsPage() {
   return (
     <div className="container mx-auto px-4 h-full">
       <header className="flex justify-end">

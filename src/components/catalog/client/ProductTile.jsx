@@ -1,7 +1,7 @@
 import { css } from '@emotion/css';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
-import { CustomerRating } from '@/components/ui/server/CustomerRating';
+import { CustomerRating } from '@/components/ui/server';
 
 export const ProductTile = (props) => {
   const { product } = props;

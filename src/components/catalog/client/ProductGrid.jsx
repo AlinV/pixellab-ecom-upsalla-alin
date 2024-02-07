@@ -6,11 +6,10 @@ import { BiLoader } from 'react-icons/bi';
 import { uiContext } from '@/contexts';
 
 export const ProductGrid = () => {
-  const { itemsPerRow } = useContext(uiContext);
+  const { itemsPerRow, pagination } = useContext(uiContext);
+  const { perPage, page } = pagination;
   const { products, loading, error } = useProducts();
   const [paginatedProducts, setPaginatedProducts] = useState([]);
-  const [perPage, setPerPage] = useState(8);
-  const [page, setPage] = useState(1);
   const topRef = useRef(null);
   const errorMessage = <img src="/images/404.gif" width={600} height={600} />;
 
@@ -59,8 +58,6 @@ export const ProductGrid = () => {
     );
   }
 
-  const pageCount = Math.ceil(products.length / perPage);
-
   return (
     <>
       <ul className={gridCssClass} ref={topRef}>
@@ -73,30 +70,6 @@ export const ProductGrid = () => {
             </li>
           );
         })}
-      </ul>
-
-      <ul className="flex justify-center gap-2">
-        {Array(pageCount)
-          .fill(' ')
-          .map((_, index) => {
-            const pageIndex = index + 1;
-            return (
-              <li key={index}>
-                <button
-                  type="button"
-                  title={`Page ${pageIndex}`}
-                  className={`rounded p-2 hover:bg-black hover:text-white transition-colors ${
-                    pageIndex === page ? 'bg-black text-white' : ''
-                  }`}
-                  onClick={() => {
-                    setPage(pageIndex);
-                  }}
-                >
-                  {pageIndex}
-                </button>
-              </li>
-            );
-          })}
       </ul>
     </>
   );

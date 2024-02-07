@@ -1,5 +1,5 @@
 import { CartControls } from '@/components/cart/client';
-import { CustomerRating } from '@/components/ui/server/CustomerRating';
+import { ContinueShopping, CustomerRating } from '@/components/ui/server';
 import { baseUrl } from '@/index';
 import Image from 'next/legacy/image';
 import { redirect } from 'next/navigation';
@@ -24,8 +24,9 @@ export default async function ProductPage({ params }) {
 
   const container = 'container px-4 mx-auto';
   return (
-    <div>
-      <header className={`${container} flex justify-end`}>
+    <div className="container mx-auto px-4 h-full">
+      <header className={`${container} flex justify-between`}>
+        <ContinueShopping></ContinueShopping>
         <CartControls></CartControls>
       </header>
 
