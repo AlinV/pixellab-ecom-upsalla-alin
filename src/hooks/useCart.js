@@ -13,8 +13,17 @@ export const useCart = (cartId = 2) => {
       })
       .then((cart) => {
         console.log(cart);
+        const { products } = cart;
+
+        setLoading(false);
+        setCartProducts(products);
+      })
+      .catch((error) => {
+        console.dir(error);
+        setLoading(false);
+        setError('An error has occured');
       });
   }, [cartId]);
 
-  return { cartProducts, loading, error };
+  return { cartProducts, loading, error, setCartProducts };
 };

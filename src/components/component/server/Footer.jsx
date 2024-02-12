@@ -1,6 +1,5 @@
 import { Separator } from '@/components/ui/server';
-import { FooterPrimary } from './FooterPrimary';
-import { FooterSecondary } from './FooterSecondary';
+import { FooterPrimary, FooterSecondary } from '.';
 
 export const Footer = () => {
   return (

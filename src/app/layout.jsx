@@ -1,5 +1,3 @@
-'use-client';
-
 import { Work_Sans } from 'next/font/google';
 import './globals.css';
 import { Footer, Header } from '@/components/component/server';
@@ -24,7 +22,7 @@ export default function RootLayout({ children }) {
               </header>
 
               <div className="main-area h-full">
-                <main className="content h-full min-h-80 mb-40">
+                <main className="content h-full min-h-80 mb-28">
                   {children}
                 </main>
 

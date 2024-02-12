@@ -1,7 +1,9 @@
 import { css } from '@emotion/css';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import { CustomerRating } from '@/components/ui/server';
+import { AddToCart } from '@/components/cart/client';
+import { Price } from '.';
 
 export const ProductTile = (props) => {
   const { product } = props;
@@ -9,14 +11,16 @@ export const ProductTile = (props) => {
 
   const productUrl = `/products/${id}`;
 
-  const gridHeader = css`
+  const gridArticle = css`
+    display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr auto auto;
+    row-gap: 10px;
   `;
 
   return (
-    <article className="text-center flex flex-col justify-between px-10 lg:px-20 h-full">
-      <header className={` grid ${gridHeader} items-center h-full`}>
+    <article className={`text-center ${gridArticle} px-10 lg:px-20 h-full bg-`}>
+      <header className="h-full">
         <Link
           href={productUrl}
           title={title}
@@ -27,8 +31,7 @@ export const ProductTile = (props) => {
             height={200}
             src={imageUrl}
             alt={`Image for product ${title}`}
-            className="inline"
-            objectFit="contain"
+            className="inline object-contain w-52 h-52"
             priority
           ></Image>
         </Link>
@@ -46,6 +49,10 @@ export const ProductTile = (props) => {
           <CustomerRating rating={product.rating}></CustomerRating>
         </div>
       </section>
+
+      <footer>
+        <AddToCart product={product}></AddToCart>
+      </footer>
     </article>
   );
 };
