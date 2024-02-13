@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CustomerRating } from '@/components/ui/server';
 import { AddToCart } from '@/components/cart/client';
-import { Price } from '.';
 
 export const ProductTile = (props) => {
   const { product } = props;
