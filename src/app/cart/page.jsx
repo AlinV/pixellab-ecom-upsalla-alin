@@ -21,16 +21,6 @@ export default function CartPage() {
 
         <aside className="col-span-4">
           <CartTotals></CartTotals>
-
-          <div>
-            <button
-              type="button"
-              title="Proceed to Checkout"
-              className="bg-black text-white transition-colors hover:bg-[var(--accent1)] uppercase text-center font-semibold w-full py-4"
-            >
-              Proceed to Checkout
-            </button>
-          </div>
         </aside>
       </section>
 

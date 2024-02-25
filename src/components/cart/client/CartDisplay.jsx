@@ -1,8 +1,7 @@
 import { cartContext } from '@/contexts';
 import { useContext } from 'react';
+import { LoadingSpinner } from '@/components/ui/client';
 import { CartLineItem } from '.';
-import { CartTotalProducts } from '.';
-import { RotatingLines } from 'react-loader-spinner';
 
 export const CartDisplay = () => {
   const { cartProducts, loading } = useContext(cartContext);
@@ -10,18 +9,14 @@ export const CartDisplay = () => {
   // insert loader style as homework
   if (loading) {
     //  please add spinner
+    return <LoadingSpinner></LoadingSpinner>;
+  }
+
+  if (cartProducts.length === 0) {
     return (
-      <RotatingLines
-        visible={true}
-        height="96"
-        width="96"
-        color="grey"
-        strokeWidth="5"
-        animationDuration="0.75"
-        ariaLabel="rotating-lines-loading"
-        wrapperStyle={{}}
-        wrapperClass=""
-      />
+      <div className="h-full flex justify-center items-center text-neutral-900 text-2xl">
+        Your cart is empty.
+      </div>
     );
   }
 
@@ -48,10 +43,6 @@ export const CartDisplay = () => {
           );
         })}
       </tbody>
-
-      <tfoot className="text-neutral-900 text-lg font-medium">
-        <CartTotalProducts></CartTotalProducts>
-      </tfoot>
     </table>
   );
 };

@@ -3,23 +3,26 @@ import { baseUrl } from '@/index';
 import { useContext, useState } from 'react';
 
 export const useAddToCart = () => {
-  const { setCartProducts, cartId, cartProducts } = useContext(cartContext);
+  const { setCartProducts, cartProducts, cartId } = useContext(cartContext);
   const [loading, setLoading] = useState(false);
 
-  // user interaction: loading = false
-  // no user interaction, automated: loading = true
+  // user interaction: loading = false;
+  // no user interaction, automated: loading = true;
 
-  // assumption only increment quantity
-  // {
-  //   userId: 2,
-  //   date: tema optional,
-  //   products: [
-  //     {
-  //       productId: 2,
-  //       quantaty: 1,
-  //     }
-  //   ]
-  // }
+  // assumption: only increment quanity
+  /**
+   *
+   * {
+   *   userId: 2,
+   *   date: tema optional,
+   *   products: [
+   *     {
+   *       productId: 2,
+   *       quantity: 1
+   *     }
+   *   ]
+   * }
+   */
   const operation = (productId, quantity = 1) => {
     // clone cart products array
     const newProducts = [...cartProducts];
@@ -46,8 +49,8 @@ export const useAddToCart = () => {
     };
 
     setLoading(true);
-
     // make request
+    // apiUrl/carts/2
     fetch(`${baseUrl}/carts/${cartId}`, {
       method: 'PUT',
       body: JSON.stringify(payload),

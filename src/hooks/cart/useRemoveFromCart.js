@@ -7,8 +7,10 @@ export const useRemoveFromCart = () => {
   const [loading, setLoading] = useState(false);
 
   const operation = (productId, quantity = 1) => {
+    // clone cart products
     const newProducts = [...cartProducts];
 
+    // find product in cart
     const cartProduct = newProducts.find((product) => {
       return product.productId === productId;
     });
@@ -22,7 +24,7 @@ export const useRemoveFromCart = () => {
     // one more case:
     if (cartProduct.quantity <= 0) {
       const index = newProducts.findIndex((product) => {
-        return (product.productId = productId);
+        return product.productId === productId;
       });
 
       // splice mutates
@@ -32,7 +34,7 @@ export const useRemoveFromCart = () => {
     setLoading(true);
     fetch(`${baseUrl}/carts/${cartId}`, {
       method: 'PUT',
-      body: JSON.stringify(),
+      body: JSON.stringify,
     })
       .then((response) => {
         return response.json();

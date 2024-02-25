@@ -1,4 +1,5 @@
-import { CartControls } from '@/components/cart/client';
+import { AddToCart, CartControls } from '@/components/cart/client';
+import { RelatedProducts } from '@/components/catalog/client';
 import { ContinueShopping, CustomerRating } from '@/components/ui/server';
 import { baseUrl } from '@/index';
 import Image from 'next/legacy/image';
@@ -61,24 +62,17 @@ export default async function ProductPage({ params }) {
             </div>
 
             <footer>
-              <button
-                type="button"
-                title="Add to cart"
-                className="uppercase px-6 py-3 bg-neutral-900 text-white hover:bg-[var(--accent1)] text-sm font-medium"
-              >
-                Add to cart
-              </button>
+              <AddToCart product={product}></AddToCart>
             </footer>
           </div>
         </div>
       </section>
       <section className="border-t border-zinc-200 mt-16 pt-16">
         <div className={`${container}`}>
-          <h1 className="text-center uppercase text-xl font-medium text-neutral-900 mb-5">
+          <h1 className="text-center uppercase text-xl font-medium text-neutral-900 mb-20">
             Related products
           </h1>
-
-          {JSON.stringify(product)}
+          <RelatedProducts category={product.category}></RelatedProducts>
         </div>
       </section>
     </div>

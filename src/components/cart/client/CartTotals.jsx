@@ -1,13 +1,14 @@
 import { cartContext } from '@/contexts';
 import { useProducts } from '@/hooks';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 
-const expresShipping = 49.0;
+const expressShipping = 49.0;
 
 export const CartTotals = () => {
   const { cartProducts } = useContext(cartContext);
   const { products, loading } = useProducts();
+  const [selectedOption, setSelectedOption] = useState('standardShipping');
 
   if (loading) {
     return (
@@ -35,6 +36,13 @@ export const CartTotals = () => {
     return total;
   }, 0);
 
+  const optionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const finalTotal =
+    selectedOption === 'expressShipping' ? total + expressShipping : total;
+
   return (
     <>
       <div>
@@ -42,26 +50,60 @@ export const CartTotals = () => {
           <h1>Cart Totals</h1>
         </header>
 
-        <div className="text-neutral-900 border-b py-3">Subtotal:</div>
+        <div className="text-neutral-900 border-b py-3">Subtotal: {total}</div>
 
         <div className="text-neutral-900 border-b py-3 flex gap-3">
           <span>Shipping:</span>
           <div className="flex flex-col gap-3">
             <div>
-              <input type="radio" name="shipping" id="standardShipping" />
+              <input
+                type="radio"
+                name="shipping"
+                id="standardShipping"
+                value="standardShipping"
+                onChange={optionChange}
+                checked={selectedOption === 'standardShipping'}
+                disabled={total > 0 ? false : true}
+              />
               <label htmlFor="standardShipping">Standard (Free)</label>
             </div>
 
             <div>
-              <input type="radio" name="shipping" id="expresShipping" />
-              <label htmlFor="expresShipping">
-                Express (${expresShipping}.00)
+              <input
+                type="radio"
+                name="shipping"
+                id="expressShipping"
+                value="expressShipping"
+                onChange={optionChange}
+                checked={selectedOption === 'expressShipping'}
+                disabled={total > 0 ? false : true}
+              />
+              <label htmlFor="expressShipping">
+                Express (${expressShipping}.00)
               </label>
             </div>
           </div>
         </div>
 
-        <div className="text-neutral-900 border-b py-3">Total: {total}</div>
+        <div className="text-neutral-900 border-b py-3">
+          Total:
+          {selectedOption === 'standardShipping'
+            ? total.toFixed(2)
+            : finalTotal.toFixed(2)}
+        </div>
+
+        <button
+          type="button"
+          title="Proceed to Checkout"
+          className={
+            total > 0
+              ? 'bg-black text-white transition-colors hover:bg-[var(--accent1)] uppercase text-center font-semibold w-full py-4 mt-10'
+              : 'bg-gray-400 text-white uppercase text-center font-semibold w-full py-4 mt-10'
+          }
+          disabled={total > 0 ? false : true}
+        >
+          Proceed to Checkout
+        </button>
       </div>
     </>
   );

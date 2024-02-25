@@ -19,7 +19,7 @@ export const CustomerRating = ({ rating }) => {
           <MdOutlineStarBorder key={`empty-star-${index}`} />
         ))}
       </div>
-      <span className="text-base order-2">({rating.count} evaluări)</span>
+      <span className="text-base order-2">({rating.count} reviews)</span>
     </>
   );
 };

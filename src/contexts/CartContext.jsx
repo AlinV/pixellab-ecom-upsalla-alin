@@ -1,4 +1,4 @@
-import { useCart } from '@/hooks';
+import { useCart } from '@/hooks/cart';
 import { createContext } from 'react';
 
 export const cartContext = createContext();
@@ -10,9 +10,9 @@ export const CartContext = ({ children }) => {
   const { cartProducts, loading, error, setCartProducts } = useCart(cartId);
 
   const removeFromCart = (productId) => {
-    const updatedCartProducts = cartProducts.filter(
-      (product) => product.productId !== productId,
-    );
+    const updatedCartProducts = cartProducts.filter((product) => {
+      return product.productId !== productId;
+    });
     setCartProducts(updatedCartProducts);
   };
 

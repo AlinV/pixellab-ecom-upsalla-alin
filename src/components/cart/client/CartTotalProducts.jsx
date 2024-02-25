@@ -9,21 +9,17 @@ export const CartTotalProducts = () => {
 
   if (loading) {
     return (
-      <tr>
-        <td>
-          <RotatingLines
-            visible={true}
-            height="20"
-            width="20"
-            color="grey"
-            strokeWidth="5"
-            animationDuration="0.75"
-            ariaLabel="rotating-lines-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-          />
-        </td>
-      </tr>
+      <RotatingLines
+        visible={true}
+        height="20"
+        width="20"
+        color="grey"
+        strokeWidth="5"
+        animationDuration="0.75"
+        ariaLabel="rotating-lines-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
     );
   }
 
@@ -41,20 +37,8 @@ export const CartTotalProducts = () => {
   );
 
   return (
-    <tr>
-      <td className="border-b"></td>
-
-      <td className="border-b"></td>
-
-      <td className="border-b">
-        <h1>Total products in cart:</h1>
-      </td>
-
-      <td className="border-b"></td>
-
-      <td className="text-center border-b py-4">{totalProducts}</td>
-
-      <td className="border-b"></td>
-    </tr>
+    <span className="absolute block min-w-5 px-1 -top-2 -right-2 bg-neutral-900 text-white group-hover:bg-white group-hover:text-neutral-900 rounded-md text-sm text-center">
+      {totalProducts}
+    </span>
   );
 };

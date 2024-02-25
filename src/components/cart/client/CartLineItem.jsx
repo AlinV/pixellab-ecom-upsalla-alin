@@ -6,22 +6,44 @@ import { RotatingLines } from 'react-loader-spinner';
 import { IoMdClose } from 'react-icons/io';
 import { useContext, useState } from 'react';
 import { cartContext } from '@/contexts';
+import { useAddToCart } from '@/hooks/cart/useAddToCart';
+import { useRemoveFromCart } from '@/hooks/cart/useRemoveFromCart';
+import { IoIosRemoveCircle } from 'react-icons/io';
+import { IoIosAddCircle } from 'react-icons/io';
+import { BiSolidTrashAlt } from 'react-icons/bi';
+import { useCartActions } from '@/hooks/cart';
 
 export const CartLineItem = ({ product }) => {
   const { quantity, productId } = product;
   const { product: fullProduct, loading } = useProduct(productId);
-  const { removeFromCart } = useContext(cartContext);
-
+  const { removeFromCart: deleteProduct } = useContext(cartContext);
+  const [newQuantity, setNewQuantity] = useState(quantity);
   const [isRemoved, setIsRemoved] = useState(false);
 
   const removeProduct = () => {
     setIsRemoved(true);
-    removeFromCart(product.productId);
+    deleteProduct(productId);
   };
+
+  const { addToCart, removeFromCart } = useCartActions();
 
   if (isRemoved) {
     return null;
   }
+
+  const addItem = () => {
+    addToCart(productId);
+    setNewQuantity((quantity) => {
+      return quantity + 1;
+    });
+  };
+
+  const removeItem = () => {
+    removeFromCart(productId);
+    setNewQuantity((quantity) => {
+      return quantity - 1;
+    });
+  };
 
   if (loading) {
     return (
@@ -56,7 +78,7 @@ export const CartLineItem = ({ product }) => {
   return (
     <>
       <tr>
-        <td className="border-b">
+        <td className="border-b pr-2">
           <button
             type="button"
             title="Remove product"
@@ -93,9 +115,37 @@ export const CartLineItem = ({ product }) => {
 
         <td className="border-b pb-4 px-2 ">${price}</td>
 
-        <td className="text-center border-b pb-4 px-2 ">{quantity}</td>
+        <td className="border-b pb-4 px-2 ">
+          <div className="inline-flex justify-between items-center">
+            <button
+              type="button"
+              className="transition-colors hover:text-[var(--accent1)] text-lg"
+              title={newQuantity < 2 ? 'Remove product' : 'Remove one item'}
+              onClick={newQuantity < 1 ? removeProduct : removeItem}
+            >
+              {newQuantity < 2 ? (
+                <BiSolidTrashAlt></BiSolidTrashAlt>
+              ) : (
+                <IoIosRemoveCircle></IoIosRemoveCircle>
+              )}
+            </button>
 
-        <td className="border-b pb-4 px-2 ">{price * quantity}</td>
+            <span className="inline-block mx-4">{newQuantity}</span>
+
+            <button
+              title="add item"
+              type="button"
+              onClick={addItem}
+              className="transition-colors hover:text-[var(--accent1)] text-lg"
+            >
+              <IoIosAddCircle></IoIosAddCircle>
+            </button>
+          </div>
+        </td>
+
+        <td className="border-b pb-4 px-2 ">
+          {(price * newQuantity).toFixed(2)}
+        </td>
       </tr>
     </>
   );

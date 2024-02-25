@@ -1,3 +1,4 @@
+import { LoadingSpinner } from '@/components/ui/client';
 import { cartContext } from '@/contexts';
 import { useCartActions } from '@/hooks/cart';
 import { useContext } from 'react';
@@ -26,19 +27,20 @@ export const AddToCart = ({ product }) => {
   return (
     <button
       type="button"
-      className="bg-black text-white uppercase font-medium text-sm py-3 px-6 hover:bg-amber-800 transition-colors"
+      className="uppercase px-6 py-3 bg-neutral-900 inline-flex justify-center text-white hover:bg-[var(--accent1)] text-sm font-medium"
       disabled={busy}
       title={
         isProductInCart ? `Remove ${title} from cart` : `Add ${title} to cart`
       }
       onClick={onClick}
     >
-      {' '}
-      {busy
-        ? '...loading'
-        : isProductInCart
-        ? 'Remove from Cart'
-        : 'Add to Cart'}
+      {busy ? (
+        <LoadingSpinner></LoadingSpinner>
+      ) : isProductInCart ? (
+        'Remove from Cart'
+      ) : (
+        'Add to Cart'
+      )}
     </button>
   );
 };
