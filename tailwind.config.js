@@ -27,6 +27,9 @@ module.exports = {
         '5xl': '3.052rem',
         '6xl': '5rem',
       },
+      height: {
+        aboutCoverBg: '650px',
+      },
     },
   },
   plugins: [],

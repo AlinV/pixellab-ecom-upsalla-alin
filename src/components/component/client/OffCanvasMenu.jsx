@@ -45,7 +45,7 @@ export const OffCanvasMenu = () => {
           </li>
 
           <li className="lg:hover:text-[var(--accent1)]">
-            <Link href="/" title="About">
+            <Link href="/about" title="About">
               About
             </Link>
           </li>

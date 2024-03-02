@@ -18,7 +18,7 @@ export const ProductTile = (props) => {
   `;
 
   return (
-    <article className={`text-center ${gridArticle} px-10 lg:px-20 h-full bg-`}>
+    <article className={`text-center ${gridArticle} px-10 lg:px-20 h-full`}>
       <header className="h-full">
         <Link
           href={productUrl}
