@@ -13,14 +13,14 @@ export const Header = () => {
       <Link
         href="/"
         title="Home"
-        className="relative z-10 lg:hover:text-[var(--accent1)]"
+        className="relative z-20 lg:hover:text-[var(--accent1)]"
       >
         <FaHome size={32}></FaHome>
       </Link>
 
       <OffCanvasMenu></OffCanvasMenu>
 
-      <ul className="hidden lg:flex flex-col gap-3 z-10">
+      <ul className="hidden lg:flex flex-col gap-3 z-20">
         <li className="lg:hover:text-[var(--accent1)]">
           <Link
             href="https://www.facebook.com"

@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
                   {children}
                 </main>
 
-                <footer className="footer">
+                <footer className="footer px-4">
                   <Footer></Footer>
                 </footer>
               </div>
